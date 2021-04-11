@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
@@ -15,6 +16,13 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginPressed(_ sender: UIButton) {
+        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { authResult, error in
+            if let e = error {
+                print(error);
+            } else {
+                self.self.performSegue(withIdentifier: K.loginSegue, sender: self);
+            }
+        }
     }
     
 }
